@@ -20,9 +20,22 @@ const App = () => {
     setNeutral(neutral + 1);
   };
 
+  const total = good + neutral + bad;
+
+  const calcAverage = ()=>{
+return total/3
+  }
+
+  const positivePercentage = () => {
+    while (total>0) {
+      return (good / total) * 100 + " %";
+    }
+    
+  };
+
   return (
     <div>
-    <h1>Give feedback</h1>
+      <h1>Give feedback</h1>
       <div className="buttons">
         <Button text="good" handleClick={increaseGood} />
         <Button text="neutral" handleClick={increaseNeutral} />
@@ -30,10 +43,13 @@ const App = () => {
       </div>
 
       <div className="display">
-      <h1>Statistics</h1>
-        <Results text="good" numberOfVotes={good}/>
-        <Results text ="neutral" numberOfVotes={neutral}/>
-        <Results text="bad" numberOfVotes={bad}/>
+        <h1>Statistics</h1>
+        <Results text="good" numberOfVotes={good} />
+        <Results text="neutral" numberOfVotes={neutral} />
+        <Results text="bad" numberOfVotes={bad} />
+        <Results text="all" numberOfVotes={total} />
+        <Results text="average" numberOfVotes={calcAverage()} />
+        <Results text="positive" numberOfVotes={positivePercentage()} />
       </div>
     </div>
   );
